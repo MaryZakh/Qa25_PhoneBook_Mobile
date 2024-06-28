@@ -38,15 +38,15 @@ public class LoginTests extends AppiumConfig {
 
     @Test
     public void loginSuccessModel2() {
-Assert.assertTrue(new AuthenticationScreen(driver)
-        .fillLoginRegistrationForm(Auth.builder().email("mara@gmail.com").password("Mmar123456$").build())
-        .submitLogin()
-        .isActivityTitleDisplayed("Contact list"));
+        Assert.assertTrue(new AuthenticationScreen(driver)
+                .fillLoginRegistrationForm(Auth.builder().email("mara@gmail.com").password("Mmar123456$").build())
+                .submitLogin()
+                .isActivityTitleDisplayed("Contact list"));
 
     }
 
     @Test
-    public void loginWrongEmail(){
+    public void loginWrongEmail() {
         new AuthenticationScreen(driver)
                 .fillLoginRegistrationForm(Auth.builder().email("maragmail.com").password("Mmar123456$").build())
                 .submitLoginNegative()
@@ -54,19 +54,15 @@ Assert.assertTrue(new AuthenticationScreen(driver)
     }
 
     @Test
-    public void loginWrongPassword(){
+    public void loginWrongPassword() {
         new AuthenticationScreen(driver)
                 .fillLoginRegistrationForm(Auth.builder().email("mara@gmail.com").password("Mmar123").build())
                 .submitLoginNegative()
                 .isErrorMessageContainsText("Login or Password incorrect");
     }
 
-
-
-
-
     @AfterMethod
-    public void postCondition(){
+    public void postCondition() {
         new ContactListScreen(driver).logout();
     }
 
