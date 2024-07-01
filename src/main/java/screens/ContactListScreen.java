@@ -21,6 +21,9 @@ public class ContactListScreen extends BaseScreen {
     @FindBy(xpath = "//*[@content-desc='More options']")
     AndroidElement menuOption;
 
+    @FindBy(xpath = "//*[@content-desc='More options']")
+    List<AndroidElement>menuOptionList;
+
     @FindBy(xpath = "//*[@text='Logout']")
     AndroidElement logoutBtn;
 
@@ -51,6 +54,22 @@ public class ContactListScreen extends BaseScreen {
 
     public AuthenticationScreen logout() {
         if (activityTextView.getText().equals("Contact list")) {
+            menuOption.click();
+            logoutBtn.click();
+        }
+        return new AuthenticationScreen(driver);
+    }
+
+    public AuthenticationScreen logout2() {
+        if (isElementDisplayed(menuOption)) {
+            menuOption.click();
+            logoutBtn.click();
+        }
+        return new AuthenticationScreen(driver);
+    }
+
+    public AuthenticationScreen logout3() {
+        if (isElementPresentInList(menuOptionList)) {
             menuOption.click();
             logoutBtn.click();
         }
